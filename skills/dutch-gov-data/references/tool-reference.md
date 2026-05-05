@@ -188,7 +188,8 @@ SRU CQL search on official publications (Staatsblad, Staatscourant, Handelingen,
 - Simple keyword: `"woningbouw"` — searches all fields
 - Field-qualified: `creator="Omtzigt"` — search specific metadata field
 - Boolean: `"woningbouw" AND "huurwoning"`
-- Dossier: `dossiernummer="36228"`
+- Dossier: `w.dossiernummer=="36228"` (exact-match operator `==` required)
+- Dossier sub-document: `w.dossiernummer==36871 AND w.dossierondernummer==63`
 
 KOOP is best for: official gazette publications (Staatsblad, Staatscourant), Handelingen transcripts, and formal kamerstukken. For general topic searches, prefer `search_documents` which normalizes across sources.
 

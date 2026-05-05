@@ -230,7 +230,7 @@ Do not merge narrative context into the canonical timeline. Keep it separate in 
 
 ### Dossier sub-number lookups
 
-- KOOP sub-document references like `36871-63` (motie 63 within dossier 36871) are addressable via `koop_search(dossier_number="36871-63")`.
+- KOOP sub-document references like `36871-63` (motie 63 within dossier 36871) are addressable via `koop_search(query='w.dossiernummer==36871 AND w.dossierondernummer==63')`.
 - TK's preferred path for a single sub-document: `tk_search(Document, $filter="HoofdDossier eq 36871 and Volgnummer eq 63")` or by `Identificatie eq 'kst-36871-63'`.
 - If the sub-document is a motie and you know the actor, prefer `search_activities(actor=..., dossier_number=36871)` and resolve the related document from the activity's DocumentActor expansion — this often surfaces the correct sub-document with its vote outcome attached.
 
