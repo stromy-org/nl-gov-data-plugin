@@ -76,6 +76,7 @@ These are soft preferences for efficient research, not hard rules:
 | **law_text** | `bwb_search` → `fetch_bwb_text(article=...)` | Enacted law article and consolidated legal text. |
 | **debate_transcript** | `search_activities`/`tk_search(Verslag)` → `fetch_tk_transcript` | Who said what in plenary/committee context. |
 | **attachment_read** | `extract_document_references` → `fetch_attachment` | Beslisnota's, reports, appendices, and PDF-only evidence. |
+| **large_doc_targeted** | `document_deep_read(toc_only=True)` → pick headings → `document_deep_read(section=...)` | Targeted reading of large documents (MvT, wetsvoorstellen, full Handelingen). |
 
 ### vote_check chain — isolating a single motion's vote
 
@@ -135,10 +136,53 @@ The MCP now exposes content tools. Use them whenever the user wants to read, quo
 
 **Content tool cautions:**
 - Only quote from `content.text_chunk` in the tool result — never from metadata titles
-- If `pagination.truncated` is true, use `offset=next_offset` to read the next chunk
+- **TRUNCATION RULE**: After every content fetch, check `pagination.truncated`.
+  - If `truncated=false`: full document was returned — proceed.
+  - If `truncated=true`: **stop and fetch the rest before synthesizing**. Use `document_deep_read(complete=True)` for automatic full retrieval (up to 200k chars), or manually paginate with `offset=next_offset`. `total_chars` tells you the full size.
+  - **Never summarize, quote conclusions, or answer "what does it say" from a truncated result.** Doing so silently omits content the user cannot see. If the document is genuinely too large (>200k chars), say so explicitly and offer section targeting.
 - If `pdf_quality` is `ocr_needed` or `empty`, state that the PDF text was unreliable
 - blg-* attachments are frequently PDF-only; use `fetch_attachment("blg-...")` which handles the XML→PDF fallback
 - TekstToezegging does not exist as an OData field — the actual field is `Tekst`
+
+### Large document strategy
+
+Dutch government documents vary enormously in size. Use the right approach for each tier:
+
+| Document size | Strategy |
+|--------------|----------|
+| <50k chars (moties, kamervragen, brieven, single articles) | `document_deep_read` — returns complete in one call by default |
+| 50k–200k chars (MvT, longer wetsvoorstellen, policy brieven) | `document_deep_read(complete=True)` — auto-paginates to full doc |
+| >200k chars (full Handelingen sessions, large codifications) | TOC-first + section targeting, or sub-agent delegation |
+
+**TOC-first pattern for large documents:**
+
+```
+1. document_deep_read(identifier, toc_only=True)
+   → returns list of section headings with levels
+2. Identify which sections are relevant to the user's question
+3. document_deep_read(identifier, section="<heading substring>")
+   → returns only that section's text
+```
+
+This avoids loading irrelevant content for documents the user only needs one chapter of.
+
+**Sub-agent delegation for very large or multi-document tasks:**
+
+When a task requires reading an entire large document (full MvT, complete Handelingen session, multiple wetsartikelen) and extracting specific information, use a Claude sub-agent (Agent tool, no `subagent_type`). This keeps your main context focused on the user's question:
+
+```
+Delegate: "Read the full text of [identifier] using document_deep_read(complete=True).
+Extract: [specific information the user needs].
+Return: a structured summary with verbatim quotes and section references."
+```
+
+Use sub-agent delegation when:
+- Document is >100k chars AND you need the full text (not just a section)
+- Multiple large documents need parallel processing
+- The extraction task is repetitive (e.g., scan all 20 toezeggingen for a keyword)
+- You want to preserve your context for the user conversation
+
+The sub-agent shares your MCP tools and returns a single focused result.
 
 ### Sample-then-deepen
 
