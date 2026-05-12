@@ -2,7 +2,7 @@
   "mcpServers": {
     "nl-gov-data": {
       "type": "http",
-      "url": "https://nl-gov-data.fastmcp.app/mcp"
+      "url": "https://nl-gov-data.whitebush-d817afec.westeurope.azurecontainerapps.io/mcp"
     }
   }
 }
