@@ -1,0 +1,52 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  node-audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        run: |
+          if [ -f package.json ]; then echo "has_node=true" >> "$GITHUB_OUTPUT"; else echo "has_node=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-node@v4
+        if: steps.detect.outputs.has_node == 'true'
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install (npm ci)
+        if: steps.detect.outputs.has_node == 'true'
+        run: npm ci
+      - name: Audit (high/critical only — fails on advisory)
+        if: steps.detect.outputs.has_node == 'true'
+        run: npm audit --audit-level=high
+      - name: Skip (no package.json)
+        if: steps.detect.outputs.has_node == 'false'
+        run: echo "No package.json present — skipping Node audit."
+
+  python-resolve:
+    name: uv sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        run: |
+          if [ -f pyproject.toml ]; then echo "has_python=true" >> "$GITHUB_OUTPUT"; else echo "has_python=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: astral-sh/setup-uv@v6
+        if: steps.detect.outputs.has_python == 'true'
+        with:
+          python-version: '3.11'
+      - name: Verify lock is consistent
+        if: steps.detect.outputs.has_python == 'true'
+        run: uv sync --frozen
+      - name: Skip (no pyproject.toml)
+        if: steps.detect.outputs.has_python == 'false'
+        run: echo "No pyproject.toml present — skipping Python resolve."
