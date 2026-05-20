@@ -22,9 +22,12 @@ def _bare(spec: str) -> str:
 declared = {"npm": set(), "pypi": set()}
 declarations = {}  # name -> list of (kind, skill)
 
-skills_root = pathlib.Path("skills")
-if skills_root.exists():
+# Plugins use skills/ at repo root; Cowork-style nurseries use .claude/skills/. Check both.
+skill_roots = [p for p in (pathlib.Path("skills"), pathlib.Path(".claude/skills")) if p.exists()]
+total_manifests = 0
+for skills_root in skill_roots:
     for deps_file in skills_root.rglob(".deps.json"):
+        total_manifests += 1
         try:
             data = json.loads(deps_file.read_text())
         except json.JSONDecodeError as e:
@@ -41,7 +44,9 @@ current = {"npm": set(), "pypi": set()}
 pkg_path = pathlib.Path("package.json")
 if pkg_path.exists():
     pkg = json.loads(pkg_path.read_text())
-    current["npm"] = set(pkg.get("dependencies", {}).keys())
+    # Accept either dependencies or devDependencies — the declaration says "this skill needs X",
+    # where X is found is fine. Misclassification (devDep used at runtime) is a separate concern.
+    current["npm"] = set(pkg.get("dependencies", {}).keys()) | set(pkg.get("devDependencies", {}).keys())
 
 pp_path = pathlib.Path("pyproject.toml")
 if pp_path.exists():
@@ -66,4 +71,4 @@ if any(missing.values()):
     sys.exit(1)
 
 total = len(declared["npm"]) + len(declared["pypi"])
-print(f"✅ All skill-declared deps present ({total} total declarations across {len(list(skills_root.rglob('.deps.json'))) if skills_root.exists() else 0} skill manifests).")
+print(f"✅ All skill-declared deps present ({total} total declarations across {total_manifests} skill manifests).")
