@@ -22,12 +22,16 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+      - uses: actions/setup-python@v5
+        if: steps.detect.outputs.has_node == 'true'
+        with:
+          python-version: '3.11'
       - name: Install (npm ci)
         if: steps.detect.outputs.has_node == 'true'
         run: npm ci
-      - name: Audit (high/critical only — fails on advisory)
+      - name: Audit with allowlist
         if: steps.detect.outputs.has_node == 'true'
-        run: npm audit --audit-level=high
+        run: python3 .github/scripts/check-npm-audit.py
       - name: Skip (no package.json)
         if: steps.detect.outputs.has_node == 'false'
         run: echo "No package.json present — skipping Node audit."
@@ -50,3 +54,14 @@ jobs:
       - name: Skip (no pyproject.toml)
         if: steps.detect.outputs.has_python == 'false'
         run: echo "No pyproject.toml present — skipping Python resolve."
+
+  skill-deps:
+    name: skill deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate skill-declared deps match manifests
+        run: python3 .github/scripts/check-skill-deps.py
