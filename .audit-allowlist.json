@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "_doc": "Advisories explicitly accepted by review. Each entry needs a review_by date. CI fails if any entry is past its review date.",
+  "advisories": [
+    {
+      "ghsa": "GHSA-xxjr-mmjv-4gpg",
+      "package": "lodash-es",
+      "reason": "Upstream chevrotain (via excalidraw → mermaid → langium) bundles vulnerable lodash-es. No fix available. Tracked for resolution by MCP migration of diagram skill (SCAFFOLDING_REFACTOR_PLAN §5).",
+      "review_by": "2026-08-20"
+    },
+    {
+      "ghsa": "GHSA-r5fr-rjxr-66jc",
+      "package": "lodash-es",
+      "reason": "Same lodash-es chain as GHSA-xxjr-mmjv-4gpg.",
+      "review_by": "2026-08-20"
+    },
+    {
+      "ghsa": "GHSA-f23m-r3pf-42rh",
+      "package": "lodash-es",
+      "reason": "Same lodash-es chain as GHSA-xxjr-mmjv-4gpg.",
+      "review_by": "2026-08-20"
+    }
+  ]
+}
