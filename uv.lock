@@ -343,7 +343,7 @@ wheels = [
 ]
 
 [[package]]
-name = "dutch-data-plugin"
+name = "nl-gov-data-plugin"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

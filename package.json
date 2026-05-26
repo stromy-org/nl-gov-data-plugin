@@ -1,5 +1,5 @@
 {
-  "name": "dutch-data-plugin",
+  "name": "nl-gov-data-plugin",
   "version": "0.1.0",
   "description": "Claude Code plugin for Dutch government data deliverables",
   "dependencies": {

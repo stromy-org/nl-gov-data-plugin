@@ -4,16 +4,16 @@ Instructions for Claude Code when working in this plugin repo.
 
 ## Overview
 
-dutch-data-plugin is a Claude Code plugin for Dutch Data. It is a **distribution artifact** — skills are authored in Cowork and cherry-picked here for client deployment.
+nl-gov-data-plugin is a Claude Code plugin for NL Gov Data. It is a **distribution artifact** — skills are authored in Cowork and cherry-picked here for client deployment.
 
 ## Repository Structure
 
 ```
-dutch-data-plugin/
+nl-gov-data-plugin/
 ├── .claude-plugin/
 │   └── plugin.json              # Plugin manifest
 ├── skills/
-│   ├── dutch-gov-data/          # Dutch government MCP orchestration
+│   ├── nl-gov-data/          # Dutch government MCP orchestration
 │   ├── pptx/                    # PowerPoint creation & editing
 │   ├── pptx-hd/                 # High-fidelity branded PPTX
 │   ├── docx/                    # Word document creation & editing
