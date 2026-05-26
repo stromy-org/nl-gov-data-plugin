@@ -1,18 +1,18 @@
-# Dutch Data Plugin
+# NL Gov Data Plugin
 
-Claude Code plugin for Dutch Data branded deliverables
+Claude Code plugin for NL Gov Data branded deliverables
 
 ## Installation
 
 ```bash
-claude plugin add stromy-org/dutch-data-plugin
+claude plugin add stromy-org/nl-gov-data-plugin
 ```
 
 Or for local development:
 
 ```bash
-git clone https://github.com/stromy-org/dutch-data-plugin.git
-cd dutch-data-plugin
+git clone https://github.com/stromy-org/nl-gov-data-plugin.git
+cd nl-gov-data-plugin
 claude --plugin-dir .
 ```
 
@@ -34,7 +34,7 @@ Dependencies are automatically installed on first session start via the `hooks/h
 
 ### Company Data
 
-Brand and company data for Dutch Data lives in `companies/dutch-data/`.
+Brand and company data for NL Gov Data lives in `companies/nl-ez/`.
 
 ## License
 

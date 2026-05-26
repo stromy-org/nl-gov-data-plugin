@@ -1,5 +1,5 @@
 ---
-name: dutch-gov-data
+name: nl-gov-data
 description: "Track Dutch public affairs signals across Tweede Kamer, Rijksoverheid, KOOP publications, BWB legislation, Wetgevingskalender, and ROO organizations using the `nl-gov-data` MCP. Supports twelve workflows: topic monitoring, dossier tracking, actor briefs, committee watch, legislative scan, ministry narrative, parliamentary landscape snapshot, legislation lookup, legislative calendar watch, law-to-dossier brief, organization lookup, and exploratory MCP testing. Now also supports content deep-reading: fetching and quoting actual document text (motions, bills, letters, debate transcripts, law articles, attachments). Produces structured JSON shaped for downstream Stromy workflows with `workflow_type`, `query_params`, `results`, and `metadata`. Use this skill whenever the user asks about Dutch parliament activity, Tweede Kamer dossiers, Dutch government policy signals, kamerstukken, dossier numbers, Dutch MPs, faction composition, ministry narrative, Dutch laws, legislation, wetgeving, wetgevingskalender, government organizations, OR wants to read/quote/summarize a specific Dutch government document, transcript, law article, or attachment."
 ---
 
@@ -471,7 +471,7 @@ Results use TOOI URIs as canonical identifiers. Prefer feeding the full URI retu
 
 ## Validation
 
-A validation harness is bundled at `skills/dutch-gov-data/scripts/validate_workflows.py` for development use. Note: the script was written for a local stdio server and will need adaptation to work against the hosted endpoint. Use it as a reference for workflow shapes rather than running it directly.
+A validation harness is bundled at `skills/nl-gov-data/scripts/validate_workflows.py` for development use. Note: the script was written for a local stdio server and will need adaptation to work against the hosted endpoint. Use it as a reference for workflow shapes rather than running it directly.
 
 ## Reference files
 

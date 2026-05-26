@@ -2,7 +2,7 @@
 _commit: 9baae1b
 _src_path: gh:stromy-org/claude-plugin-template
 author_name: William Masquelier
-client_name: Dutch Data
+client_name: NL Gov Data
 client_slug: nl-ez
 description: Claude Code plugin for Dutch government data research and branded deliverables
 github_org: stromy-org
@@ -12,7 +12,7 @@ include_python: true
 mcp_server_name: nl-gov-data
 mcp_transport: http
 mcp_url: https://nl-gov-data.whitebush-d817afec.westeurope.azurecontainerapps.io/mcp
-plugin_name: Dutch Data
-plugin_slug: dutch-data-plugin
+plugin_name: NL Gov Data
+plugin_slug: nl-gov-data-plugin
 skill_slug: example
 version: 0.1.0
