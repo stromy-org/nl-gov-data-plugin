@@ -4,7 +4,7 @@
   "description": "Claude Code plugin for Dutch government data deliverables",
   "dependencies": {
     "@excalidraw/mermaid-to-excalidraw": "^2.2.2",
-    "docx": "^9.5.3",
+    "docx": "^9.7.0",
     "playwright": "^1.58.1",
     "pptxgenjs": "^4.0.1",
     "react": "^18.3.1",
