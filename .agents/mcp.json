@@ -12,7 +12,7 @@
     },
     "stromy-format": {
       "transport": "http",
-      "url": "${STROMY_FORMAT_MCP_URL}",
+      "url": "https://stromy-format-mcp.whitetree-762cff59.westeurope.azurecontainerapps.io/mcp",
       "_consumed_by": ["claude", "codex", "gemini"],
       "_codex_via": "mcp-remote",
       "_gemini_via": "mcp-remote",

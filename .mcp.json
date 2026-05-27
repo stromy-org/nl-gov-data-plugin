@@ -7,7 +7,7 @@
     },
     "stromy-format": {
       "type": "http",
-      "url": "${STROMY_FORMAT_MCP_URL}"
+      "url": "https://stromy-format-mcp.whitetree-762cff59.westeurope.azurecontainerapps.io/mcp"
     }
   }
 }
