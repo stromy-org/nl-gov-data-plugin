@@ -1,8 +1,13 @@
 {
+  "_comment": "Rendered from .agents/mcp.json by scripts/render-mcp.py \u2014 DO NOT EDIT BY HAND. Edit .agents/mcp.json and re-run.",
   "mcpServers": {
     "nl-gov-data": {
       "type": "http",
       "url": "https://nl-gov-data.whitebush-d817afec.westeurope.azurecontainerapps.io/mcp"
+    },
+    "stromy-format": {
+      "type": "http",
+      "url": "https://stromy-format-mcp.whitetree-762cff59.westeurope.azurecontainerapps.io/mcp"
     }
   }
 }

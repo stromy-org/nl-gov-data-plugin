@@ -1,0 +1,22 @@
+{
+  "$schema": "https://gofastmcp.com/public/schemas/mcp-config.schema.json",
+  "_notes": "Canonical MCP server config for nl-gov-data-plugin. Edit only this file. Run scripts/render-mcp.py to regenerate .mcp.json / .gemini/settings.json / .codex/config.toml / .vscode/mcp.json.",
+  "servers": {
+    "nl-gov-data": {
+      "transport": "http",
+      "url": "https://nl-gov-data.whitebush-d817afec.westeurope.azurecontainerapps.io/mcp",
+      "_consumed_by": ["claude", "codex", "gemini"],
+      "_codex_via": "mcp-remote",
+      "_gemini_via": "mcp-remote",
+      "_notes": "Dutch government open-data MCP — search/fetch legislation, parliamentary records, Rijksoverheid documents. Per-user OAuth via Microsoft Entra ID."
+    },
+    "stromy-format": {
+      "transport": "http",
+      "url": "https://stromy-format-mcp.whitetree-762cff59.westeurope.azurecontainerapps.io/mcp",
+      "_consumed_by": ["claude", "codex", "gemini"],
+      "_codex_via": "mcp-remote",
+      "_gemini_via": "mcp-remote",
+      "_notes": "Hosted format skills (pptx, pptx-hd, docx, pdf, pdf-hd, xlsx, mermaid, diagram, chart). Fetched at runtime via ReadMcpResourceTool — see skills/<name>/SKILL.md stubs."
+    }
+  }
+}
