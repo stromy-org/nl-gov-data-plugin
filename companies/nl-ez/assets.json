@@ -166,5 +166,10 @@
       "sha256": "51e97fa5696c9ace7ae72e880a9b18968465be92c79b9fa85c0973ee604977ab",
       "mime": "image/jpeg"
     }
-  ]
+  ],
+  "brand_context": {
+    "sha256": "86d7320e2ed0ed32a57dd02e1003249c4052c18e2b9ef8f94b88d81793e9f31c",
+    "mime": "application/json",
+    "bytes": 9974
+  }
 }

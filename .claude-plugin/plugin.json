@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "nl-ez-plugin",
-  "version": "0.5.15",
+  "version": "0.5.16",
   "description": "Branded Claude Code plugin for Ministerie van Economische Zaken en Klimaat (nl-ez). Composes Dutch government data intelligence (nl-gov-data MCP — Tweede Kamer, Rijksoverheid, KOOP, BWB, Wetgevingskalender, Rechtspraak, CBS, plus nl-issue-framing, nl-parliamentary-positioning, nl-policy-legislative-landscape, nl-tensions) with server-side branded document formatting (stromy-format) and markdown-canvas deliverable planning, over the nl-ez client-data brand overlay.",
   "author": {
     "name": "stromy-org"
