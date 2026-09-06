@@ -1,6 +1,7 @@
 ---
 name: format-video-hd
 description: "Author a premium branded explainer / educational VIDEO — a server-rendered MP4 with animated titles, kinetic typography, animated diagrams (process-flow), animated data (data-bars + KPI count-ups), image reveals, captions, and optional voiceover/music. Storyboard-first and accuracy-gated: plans a scene-by-scene shot list with a per-scene source citation, runs the voice cascade, then renders via the async `render_video` MCP tool with a brand gate + a per-scene visual-review pass before delivery. Deeply integrated with the invoking plugin's brand overlay (`brand_context.json`, `assets.json`). USE THIS whenever someone wants a video, explainer video, animated explainer, motion-graphics video, product / strategy / plan walkthrough, or to turn a brief, plan, or report into a branded video — even if they don't say 'video'. Content is condensed, accurate, and well-structured — never fabricated. Server-rendered (Playwright + ffmpeg), brand-required (no unbranded path). SIBLINGS — pick the right one: a low-level HTML→MP4 clip to drop into a deck/PDF → format-motion; generative AI footage (Veo/Kling talking-head/b-roll) → video-production; an editable branded deck → format-pptx-hd."
+client_summary: "Produce a short branded explainer video with animated titles, visuals and optional voiceover."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -20,6 +21,8 @@ This skill's full instructions are hosted on the `stromy-format` MCP server. Do 
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `stromy-format` MCP with `path="skills/format-video-hd/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/format-video-hd"` (and `path="skills/format-video-hd/references"`),

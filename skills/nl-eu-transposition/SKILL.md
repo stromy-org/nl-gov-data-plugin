@@ -1,6 +1,7 @@
 ---
 name: nl-eu-transposition
 description: "Track how a specific EU directive is being transposed into Dutch law: deadline, national implementing measures (NIMs), BWB article-level correspondence table, gold-plating screen, Wetgevingskalender live pipeline status, and an infringement/Single Market Scoreboard benchmark. Surfaces compliance risk and PA lobbying windows. Use for 'EU directive', 'transposition', 'implementatie richtlijn', 'richtlijn omzetting', 'gold-plating', 'NIM', 'CELEX', 'implementatiewet', 'conformity deficit', 'infringement', 'Single Market Scoreboard', 'EU→NL', 'directive tracker', 'does this directive apply to NL', 'is NL compliant with directive X', 'national implementing measure', 'transposition deadline'."
+client_summary: "See how an EU directive is being written into Dutch law, and where the gaps and delays are."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -20,6 +21,8 @@ This skill's full instructions are hosted on the `nl-gov-data` MCP server. Do no
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `nl-gov-data` MCP with `path="skills/nl-eu-transposition/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/nl-eu-transposition"` (and `path="skills/nl-eu-transposition/references"`),

@@ -1,6 +1,7 @@
 ---
 name: format-diagram
 description: "Generate branded diagrams (process flows, architecture views, stakeholder maps, org charts, timelines, funnels, matrices, mind maps) as SVG/PNG for embedding in deliverables. TWO routes: (1) the DEFAULT for flow/relationship diagrams — author Mermaid text and call the server-side `render_diagram` MCP tool (auto-layout + deep brand theming, works in a deployed sandbox, brand-gated); (2) hand-authored Excalidraw JSON for bespoke structural art (operator environment only). Use when asked to create a diagram, draw a process flow, make an architecture diagram, visualize a workflow, create a stakeholder map, org chart, funnel diagram, timeline, or any structural visual."
+client_summary: "Draw a process, structure or relationship as an on-brand diagram for your documents."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -20,6 +21,8 @@ This skill's full instructions are hosted on the `stromy-format` MCP server. Do 
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `stromy-format` MCP with `path="skills/format-diagram/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/format-diagram"` (and `path="skills/format-diagram/references"`),

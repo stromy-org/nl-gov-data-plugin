@@ -1,6 +1,7 @@
 ---
 name: format-docx
 description: "Create, read, edit, and manipulate Word documents (.docx files). Triggers on any mention of 'Word doc', 'word document', '.docx', or requests to produce documents with formatting like tables of contents, headings, page numbers, headers/footers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images, performing find-and-replace, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'brief', or 'template' as a Word file, use this skill. When a single client overlay resolves, use it automatically for branding unless the user explicitly asks for unbranded output. Do NOT use for PDFs (use the `format-pdf` skill), spreadsheets (use `format-xlsx`), Google Docs, or coding tasks unrelated to document generation."
+client_summary: "Create or edit Word documents, including tables of contents, headers and letterheads."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -20,6 +21,8 @@ This skill's full instructions are hosted on the `stromy-format` MCP server. Do 
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `stromy-format` MCP with `path="skills/format-docx/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/format-docx"` (and `path="skills/format-docx/references"`),

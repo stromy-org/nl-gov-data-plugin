@@ -1,6 +1,7 @@
 ---
 name: nl-evidence-grounding
 description: "Fact-check a Dutch policy claim or numeric assertion against the official record — triangulating CBS statistics, Rijksfinanciën budget data (phase-labelled OWB/O1/O2/JV), kamerstukken framing, and Rechtspraak rulings — into a source-cited Evidence Dossier with a falsifiable restatement, a source-independence table, a fixed-vocabulary triangulation verdict, a causation audit, and a debate-connect trace (toezegging → budget trajectory → CBS realisation → parliamentary framing). Use this skill whenever the user asks 'is this claim true', wants to fact-check a minister's statement or a stated figure, wants to ground a numeric claim in the official record, asks 'what does CBS say about X', wants to verify the minister's numbers, or wants a beleidsdoorlichting-style evidence check on a specific assertion. Do NOT use for: tracking a pledge's delivery status over time or a said-vs-done ledger across a frozen, bounded commitment corpus (→ `nl-accountability`); adversarial angle-hunting or contradiction-mining across an entire topic for roundtable angles (→ `nl-tensions`); a comprehensive topic or policy landscape survey (→ `nl-policy-legislative-landscape`). This skill grounds one bounded claim, or a small batch of 1-5 claims — it is a targeted fact-check, not a monitoring stream."
+client_summary: "Fact-check a Dutch policy claim or figure against the official record."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -20,6 +21,8 @@ This skill's full instructions are hosted on the `nl-gov-data` MCP server. Do no
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `nl-gov-data` MCP with `path="skills/nl-evidence-grounding/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/nl-evidence-grounding"` (and `path="skills/nl-evidence-grounding/references"`),

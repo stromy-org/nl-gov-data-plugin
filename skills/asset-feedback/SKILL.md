@@ -1,6 +1,7 @@
 ---
 name: asset-feedback
 description: "Capture structured client, operator, and agent-execution feedback through the asset-broker MCP and write it to the scoped feedback lane in the shared `client-feedback` repo. Use when the user wants to record product feedback on a deliverable or when the agent should file an infra-quality retrospective about the skill/tooling it just used."
+client_summary: "Tell us what worked and what did not, so the tools and your setup keep improving."
 ---
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -30,6 +31,8 @@ Then stop and wait. Never fall back to a local or identically-named base skill, 
 
 1. Read the main skill instructions:
    → call the `fs_read` tool on the `asset-broker` MCP with `path="skills/asset-feedback/SKILL.md"`.
+
+   **Read it to the end.** `fs_read` returns one page at a time. If the result's `next_offset_chars` is not null — or the returned text ends in a `<<< PARTIAL READ … >>>` block — the body is incomplete: call `fs_read` again with `offset_chars` set to that value and concatenate, repeating until it comes back null. Do **not** start work on a partial skill body. Hard rules and anti-patterns often sit in the final third, and a partial read fails silently — it looks like a complete skill.
 
 2. Discover reference files (and any other skill assets), then read on demand:
    → call `fs_list` with `path="skills/asset-feedback"` (and `path="skills/asset-feedback/references"`),
