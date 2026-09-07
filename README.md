@@ -12,8 +12,8 @@ claude plugin add stromy-org/nl-gov-data-plugin
 Or for local development:
 
 ```bash
-git clone https://github.com/stromy-org/nl-gov-data-plugin.git
-cd nl-gov-data-plugin
+git clone https://github.com/stromy-org/nl-ez-plugin.git
+cd nl-ez-plugin
 claude --plugin-dir .
 ```
 
